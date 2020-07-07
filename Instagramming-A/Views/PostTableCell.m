@@ -7,6 +7,7 @@
 //
 
 #import "PostTableCell.h"
+#import "NSDate+DateTools.h"
 
 @implementation PostTableCell
 
@@ -19,6 +20,19 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)updateWithPost:(Post *)post {
+    self.post = post;
+    
+    self.descriptionLabel.text = post.caption;
+    self.dateLabel.text = post.createdAt.timeAgoSinceNow;
+    self.postImageView.file = post.image;
+    [self.postImageView loadInBackground];
+    
+    PFUser *user = post.author;
+    self.usernameLabel.text = user.username;
+    self.authorLabel.text = user.username;
 }
 
 @end

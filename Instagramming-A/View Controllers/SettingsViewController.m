@@ -1,34 +1,55 @@
 //
-//  UploadViewController.m
+//  SettingsViewController.m
 //  Instagramming-A
 //
 //  Created by Andres Barragan on 07/07/20.
 //  Copyright © 2020 Andres Barragan. All rights reserved.
 //
 
-#import "UploadViewController.h"
-#import "Post.h"
+#import "SettingsViewController.h"
+#import <Parse/Parse.h>
+@import Parse;
 
-@interface UploadViewController () <UITextViewDelegate>
+@interface SettingsViewController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *postImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
-@property (weak, nonatomic) IBOutlet UITextView *textField;
+@property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet UITextField *usernameField;
+@property (weak, nonatomic) IBOutlet UITextField *descriptionField;
+@property (strong, nonatomic) PFUser *user;
 
 @end
 
-@implementation UploadViewController
+@implementation SettingsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.textField.delegate = self;
-    self.textField.text = @"Caption...";
-    self.textField.textColor = UIColor.lightGrayColor;
-    // Do any additional setup after loading the view
+    // Do any additional setup after loading the view.
+    self.user = [PFUser currentUser];
+    self.usernameField.text = self.user.username;
+    self.descriptionField.text = self.user[@"description"];
+    self.profileImageView.file = self.user[@"image"];
+    [self.profileImageView loadInBackground];
+    
     UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnPhoto:)];
-    [self.postImageView addGestureRecognizer:profileTapGestureRecognizer];
-    [self.postImageView setUserInteractionEnabled:YES];
+    [self.profileImageView addGestureRecognizer:profileTapGestureRecognizer];
+    [self.profileImageView setUserInteractionEnabled:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self updateUserInfo];
+}
+
+- (void)updateUserInfo {
+    self.user.username = self.usernameField.text;
+    self.user[@"description"] = self.descriptionField.text;
+    
+    if (self.profileImageView.image != nil) {
+        NSData *imageData = UIImagePNGRepresentation(self.profileImageView.image);
+        self.user[@"image"] = [PFFileObject fileObjectWithName:@"image.png" data:imageData];
+    }
+    
+    [self.user saveInBackground];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
@@ -38,7 +59,7 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
 
     // Do something with the images (based on your use case)
-    self.postImageView.image = editedImage;
+    self.profileImageView.image = editedImage;
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -56,21 +77,6 @@
     UIGraphicsEndImageContext();
     
     return newImage;
-}
-
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-    if (self.textField.textColor == UIColor.lightGrayColor) {
-        self.textField.text = @"";
-        self.textField.textColor = UIColor.blackColor;
-    }
-    return YES;
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView {
-    if ([self.textField.text isEqualToString:@""]) {
-        self.textField.text = @"Caption...";
-        self.textField.textColor = UIColor.lightGrayColor;
-    }
 }
 
 - (IBAction)dismissOnTap:(id)sender {
@@ -119,22 +125,6 @@
     [alert addAction:takePhotoAction];
 
     [self presentViewController:alert animated:YES completion:^{}];
-}
-
-- (IBAction)tappedShare:(id)sender {
-    if (self.textField.textColor == UIColor.lightGrayColor) {
-        self.textField.text = @"";
-    }
-    
-    [Post postUserImage:self.postImageView.image withCaption:self.textField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-            if (error) {
-                NSLog(@"Error uploading post: %@", error.localizedDescription);
-            } else {
-                NSLog(@"Upload Success!");
-                [self.view endEditing:YES];
-//                [self dismissViewControllerAnimated:true completion:nil];
-            }
-            }];
 }
 
 /*

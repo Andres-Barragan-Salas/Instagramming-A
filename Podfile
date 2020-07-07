@@ -7,6 +7,9 @@ target 'Instagramming-A' do
 
   # Pods for Instagramming-A
   pod 'Parse'
+  pod 'Parse/UI'
+  pod 'DateTools'
+  pod 'ResponsiveLabel', '~> 1.0.10'
 
   target 'Instagramming-ATests' do
     inherit! :search_paths

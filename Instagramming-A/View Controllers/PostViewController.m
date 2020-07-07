@@ -7,8 +7,9 @@
 //
 
 #import "PostViewController.h"
+#import "PostTableCell.h"
 
-@interface PostViewController ()
+@interface PostViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -18,7 +19,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     // Do any additional setup after loading the view.
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    PostTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostTableCell"];
+    
+    Post *post = self.post;
+    [cell updateWithPost:post];
+    
+    return cell;
 }
 
 /*

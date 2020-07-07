@@ -26,6 +26,7 @@
 		2BE7D27624B422F80009F007 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7D27524B422F80009F007 /* HomeViewController.m */; };
 		2BE7D27924B4EA130009F007 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7D27824B4EA130009F007 /* UploadViewController.m */; };
 		2BE7D27F24B4F5F30009F007 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7D27E24B4F5F30009F007 /* Post.m */; };
+		2BE7D28224B522B20009F007 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7D28124B522B20009F007 /* SettingsViewController.m */; };
 		5539CE9367F027AB48CC563F /* Pods_Instagramming_A_Instagramming_AUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62099A09DB4A38B2E3393ED9 /* Pods_Instagramming_A_Instagramming_AUITests.framework */; };
 		9879421327251F6A6A46CB25 /* Pods_Instagramming_A.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E430D67CF503AD2289367DB /* Pods_Instagramming_A.framework */; };
 		E5FA22A4437EDFC1E35B0A18 /* Pods_Instagramming_ATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41F49135090DC1CC4C15238E /* Pods_Instagramming_ATests.framework */; };
@@ -89,6 +90,8 @@
 		2BE7D27824B4EA130009F007 /* UploadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
 		2BE7D27D24B4F5F30009F007 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		2BE7D27E24B4F5F30009F007 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		2BE7D28024B522B20009F007 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		2BE7D28124B522B20009F007 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		41F49135090DC1CC4C15238E /* Pods_Instagramming_ATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagramming_ATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57DC5422515E02B15FD424BC /* Pods-Instagramming-A.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagramming-A.debug.xcconfig"; path = "Target Support Files/Pods-Instagramming-A/Pods-Instagramming-A.debug.xcconfig"; sourceTree = "<group>"; };
 		608478F2E7C731235507CB75 /* Pods-Instagramming-A.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagramming-A.release.xcconfig"; path = "Target Support Files/Pods-Instagramming-A/Pods-Instagramming-A.release.xcconfig"; sourceTree = "<group>"; };
@@ -201,6 +204,8 @@
 				2BE7D27524B422F80009F007 /* HomeViewController.m */,
 				2BE7D27724B4EA130009F007 /* UploadViewController.h */,
 				2BE7D27824B4EA130009F007 /* UploadViewController.m */,
+				2BE7D28024B522B20009F007 /* SettingsViewController.h */,
+				2BE7D28124B522B20009F007 /* SettingsViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -509,6 +514,7 @@
 				2BE7D27324B422B80009F007 /* PostViewController.m in Sources */,
 				2BE7D21E24B3CD9C0009F007 /* SceneDelegate.m in Sources */,
 				2BE7D26024B3DF4E0009F007 /* Util.m in Sources */,
+				2BE7D28224B522B20009F007 /* SettingsViewController.m in Sources */,
 				2BE7D27624B422F80009F007 /* HomeViewController.m in Sources */,
 				2BE7D27F24B4F5F30009F007 /* Post.m in Sources */,
 			);

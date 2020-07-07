@@ -10,10 +10,11 @@
 #import "UserViewController.h"
 #import "Parse/Parse.h"
 #import "SceneDelegate.h"
+@import Parse;
 
 @interface UserViewController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+@property (weak, nonatomic) IBOutlet PFImageView *userImageView;
 @property (weak, nonatomic) IBOutlet UILabel *postsCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *followersCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *followingCountLabel;
