@@ -19,6 +19,8 @@
 		2BE7D25C24B3DB0C0009F007 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7D25B24B3DB0C0009F007 /* RegisterViewController.m */; };
 		2BE7D26024B3DF4E0009F007 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7D25F24B3DF4E0009F007 /* Util.m */; };
 		2BE7D26324B3E81F0009F007 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7D26224B3E81F0009F007 /* UserViewController.m */; };
+		2BE7D26A24B402E00009F007 /* PostTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7D26924B402E00009F007 /* PostTableCell.m */; };
+		2BE7D26D24B402F80009F007 /* PostCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7D26C24B402F70009F007 /* PostCollectionCell.m */; };
 		5539CE9367F027AB48CC563F /* Pods_Instagramming_A_Instagramming_AUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62099A09DB4A38B2E3393ED9 /* Pods_Instagramming_A_Instagramming_AUITests.framework */; };
 		9879421327251F6A6A46CB25 /* Pods_Instagramming_A.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E430D67CF503AD2289367DB /* Pods_Instagramming_A.framework */; };
 		E5FA22A4437EDFC1E35B0A18 /* Pods_Instagramming_ATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41F49135090DC1CC4C15238E /* Pods_Instagramming_ATests.framework */; };
@@ -68,6 +70,10 @@
 		2BE7D25F24B3DF4E0009F007 /* Util.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 		2BE7D26124B3E81F0009F007 /* UserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
 		2BE7D26224B3E81F0009F007 /* UserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		2BE7D26824B402E00009F007 /* PostTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostTableCell.h; sourceTree = "<group>"; };
+		2BE7D26924B402E00009F007 /* PostTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostTableCell.m; sourceTree = "<group>"; };
+		2BE7D26B24B402F70009F007 /* PostCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCollectionCell.h; sourceTree = "<group>"; };
+		2BE7D26C24B402F70009F007 /* PostCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCollectionCell.m; sourceTree = "<group>"; };
 		41F49135090DC1CC4C15238E /* Pods_Instagramming_ATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagramming_ATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57DC5422515E02B15FD424BC /* Pods-Instagramming-A.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagramming-A.debug.xcconfig"; path = "Target Support Files/Pods-Instagramming-A/Pods-Instagramming-A.debug.xcconfig"; sourceTree = "<group>"; };
 		608478F2E7C731235507CB75 /* Pods-Instagramming-A.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagramming-A.release.xcconfig"; path = "Target Support Files/Pods-Instagramming-A/Pods-Instagramming-A.release.xcconfig"; sourceTree = "<group>"; };
@@ -130,6 +136,7 @@
 		2BE7D21824B3CD9C0009F007 /* Instagramming-A */ = {
 			isa = PBXGroup;
 			children = (
+				2BE7D26724B401BD0009F007 /* Models */,
 				2BE7D25D24B3DF2F0009F007 /* Utility */,
 				2BE7D25024B3D6120009F007 /* Views */,
 				2BE7D24F24B3D6060009F007 /* View Controllers */,
@@ -180,6 +187,10 @@
 		2BE7D25024B3D6120009F007 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2BE7D26824B402E00009F007 /* PostTableCell.h */,
+				2BE7D26924B402E00009F007 /* PostTableCell.m */,
+				2BE7D26B24B402F70009F007 /* PostCollectionCell.h */,
+				2BE7D26C24B402F70009F007 /* PostCollectionCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -191,6 +202,13 @@
 				2BE7D25F24B3DF4E0009F007 /* Util.m */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		2BE7D26724B401BD0009F007 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		8DDBE274E54B022DB754B03C /* Pods */ = {
@@ -454,8 +472,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BE7D26A24B402E00009F007 /* PostTableCell.m in Sources */,
 				2BE7D26324B3E81F0009F007 /* UserViewController.m in Sources */,
 				2BE7D25C24B3DB0C0009F007 /* RegisterViewController.m in Sources */,
+				2BE7D26D24B402F80009F007 /* PostCollectionCell.m in Sources */,
 				2BE7D25924B3DB020009F007 /* LoginViewController.m in Sources */,
 				2BE7D21B24B3CD9C0009F007 /* AppDelegate.m in Sources */,
 				2BE7D22C24B3CD9E0009F007 /* main.m in Sources */,
