@@ -782,7 +782,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTC-SC-zwH">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTC-SC-zwH">
                                 <rect key="frame" x="15" y="176" width="345" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
@@ -809,7 +809,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Uu2-w8-96J">
                                 <rect key="frame" x="0.0" y="253" width="375" height="414"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nkg-xJ-QPb">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nkg-xJ-QPb">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -823,17 +823,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QWW-aY-4oV" customClass="PFImageView">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QWW-aY-4oV" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="QWW-aY-4oV" firstAttribute="leading" secondItem="HZv-Xy-FWe" secondAttribute="leading" id="Hfp-ok-9oR"/>
-                                                <constraint firstAttribute="trailing" secondItem="QWW-aY-4oV" secondAttribute="trailing" id="cIR-Dg-hRu"/>
-                                                <constraint firstItem="QWW-aY-4oV" firstAttribute="top" secondItem="HZv-Xy-FWe" secondAttribute="top" id="fzD-lh-yMO"/>
-                                                <constraint firstAttribute="bottom" secondItem="QWW-aY-4oV" secondAttribute="bottom" id="uXb-z6-acb"/>
-                                            </constraints>
                                         </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="postImageView" destination="QWW-aY-4oV" id="4gK-WH-eq3"/>
+                                            <segue destination="mpi-pM-yxM" kind="show" id="C4u-5J-65o"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -1257,7 +1256,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Ehd-aU-eXO"/>
         <segue reference="v75-8R-lQa"/>
-        <segue reference="r2U-Oc-0Sd"/>
+        <segue reference="C4u-5J-65o"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="feed_tab" width="25" height="25"/>

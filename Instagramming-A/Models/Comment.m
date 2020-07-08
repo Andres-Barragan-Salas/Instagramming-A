@@ -26,6 +26,8 @@
     newComment.author = [PFUser currentUser];
     newComment.caption = caption;
     
+    [post incrementKey:@"commentCount"];
+    
     [newComment saveInBackgroundWithBlock: completion];
 }
 

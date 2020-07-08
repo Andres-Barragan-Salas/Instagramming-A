@@ -26,10 +26,13 @@
     
     Post *newPost = [Post new];
     newPost.image = [self getPFFileFromImage:image];
-    newPost.author = [PFUser currentUser];
     newPost.caption = caption;
     newPost.likeCount = @(0);
     newPost.commentCount = @(0);
+    
+    PFUser *user = [PFUser currentUser];
+    newPost.author = user;
+    [user incrementKey:@"postCount"];
     
     [newPost saveInBackgroundWithBlock: completion];
 }

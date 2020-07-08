@@ -46,7 +46,7 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
 
     // Do something with the images (based on your use case)
-    self.postImageView.image = [self resizeImage:editedImage withSize:CGSizeMake(150, 150)];
+    self.postImageView.image = [self resizeImage:editedImage withSize:CGSizeMake(300, 300)];
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
