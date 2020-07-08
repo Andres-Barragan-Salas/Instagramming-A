@@ -28,7 +28,7 @@
     self.tableView.delegate = self;
     // Do any additional setup after loading the view.
     if (self.toComment) {
-        [self performSegueWithIdentifier:@"CommentSegue" sender:nil];
+        [self performSegueWithIdentifier:@"CommentButtonSegue" sender:nil];
     }
     
     [self fetchComments];
@@ -40,9 +40,11 @@
 
 - (void)fetchComments {
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Comment"];
-     [postQuery orderByDescending:@"createdAt"];
-     [postQuery includeKey:@"author"];
-     postQuery.limit = 20;
+    [postQuery includeKey:@"author"];
+    [postQuery includeKey:@"post"];
+    [postQuery whereKey:@"post" equalTo:self.post];
+    [postQuery orderByDescending:@"createdAt"];
+    postQuery.limit = 20;
 
     // Fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Comment *> * _Nullable comments, NSError * _Nullable error) {
@@ -81,7 +83,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqual:@"CommentButtonSegue"]) {
         self.toComment = NO;
-        CommentViewController *commentViewController = [segue destinationViewController];
+        UINavigationController *navigationController = [segue destinationViewController];
+        CommentViewController *commentViewController = (CommentViewController *)navigationController.topViewController;
         commentViewController.post = self.post;
     }
 }
