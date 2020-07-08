@@ -66,6 +66,9 @@
     return cell;
 }
 
+- (IBAction)tappedUpload:(id)sender {
+    self.tabBarController.selectedIndex = 1;
+}
 
 #pragma mark - Navigation
 

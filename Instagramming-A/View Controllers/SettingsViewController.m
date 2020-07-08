@@ -28,6 +28,7 @@
     self.user = [PFUser currentUser];
     self.usernameField.text = self.user.username;
     self.descriptionField.text = self.user[@"description"];
+    self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height/2;
     self.profileImageView.file = self.user[@"image"];
     [self.profileImageView loadInBackground];
     
@@ -59,7 +60,7 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
 
     // Do something with the images (based on your use case)
-    self.profileImageView.image = editedImage;
+    self.profileImageView.image = [self resizeImage:editedImage withSize:CGSizeMake(150, 150)];
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];

@@ -23,6 +23,10 @@
     // Do any additional setup after loading the view.
 }
 
+- (IBAction)dismissOnTap:(id)sender {
+    [self.view endEditing:YES];
+}
+
 - (IBAction)tappedLogin:(id)sender {
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;

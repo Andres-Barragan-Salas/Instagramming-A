@@ -21,14 +21,43 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) PFUser *user;
 
 @end
 
 @implementation UserViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    self.user = [PFUser currentUser];
+    [self setUserInfo];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.userImageView.layer.cornerRadius = self.userImageView.frame.size.height/2;
+}
+
+- (void)setUserInfo {
+    self.usernameLabel.text = self.user.username;
+    self.descriptionLabel.text = self.user[@"description"];
+    [self countPosts];
+    self.followersCountLabel.text = @"0";
+    self.followingCountLabel.text = @"0";
+    self.userImageView.file = self.user[@"image"];
+    [self.userImageView loadInBackground];
+}
+
+- (void) countPosts {
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query whereKey:@"author" equalTo:self.user];
+    [query countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
+      if (!error) {
+          self.postsCountLabel.text = [NSString stringWithFormat:@"%d", count];
+      } else {
+          self.postsCountLabel.text = @"0";
+      }
+    }];
 }
 
 - (IBAction)tappedLogout:(id)sender {

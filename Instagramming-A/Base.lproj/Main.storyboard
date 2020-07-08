@@ -40,7 +40,7 @@
                                     <constraint firstAttribute="height" constant="35" id="vYb-7T-1Kh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="431-KV-Ltl">
                                 <rect key="frame" x="60.5" y="523" width="179" height="21"/>
@@ -76,6 +76,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="4Sd-E3-hiI" firstAttribute="top" secondItem="ha0-yv-k5h" secondAttribute="bottom" constant="30" id="0iL-yK-jLg"/>
                             <constraint firstItem="yv4-VC-ewI" firstAttribute="centerY" secondItem="431-KV-Ltl" secondAttribute="centerY" id="3sL-2g-hSv"/>
@@ -97,6 +98,9 @@
                             <constraint firstItem="YxC-6G-Djl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sZf-76-JkB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="bpI-ZF-4oO" appends="YES" id="4eU-08-ezz"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="passwordField" destination="YxC-6G-Djl" id="o4J-Pa-Vy8"/>
@@ -105,6 +109,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="bpI-ZF-4oO">
+                    <connections>
+                        <action selector="dismissOnTap:" destination="BYZ-38-t0r" id="VVJ-Mu-eIT"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="138.40000000000001" y="112.89355322338831"/>
         </scene>
@@ -276,7 +285,11 @@
                         <viewLayoutGuide key="safeArea" id="E32-gx-nL3"/>
                     </view>
                     <navigationItem key="navigationItem" title="Instagram" id="4f4-9Y-VtP">
-                        <barButtonItem key="rightBarButtonItem" image="insta_camera_btn" id="cy6-NZ-XxR"/>
+                        <barButtonItem key="rightBarButtonItem" image="insta_camera_btn" id="cy6-NZ-XxR">
+                            <connections>
+                                <action selector="tappedUpload:" destination="4vt-1M-9Kq" id="IJS-4V-h9N"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="rIM-k9-qSk" id="FLg-5w-8MS"/>
@@ -545,7 +558,7 @@
                                     <action selector="tappedUploadFromGallery:" destination="RMa-Fv-D5N" eventType="touchUpInside" id="ATn-RQ-Xof"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9SW-dw-s1p">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9SW-dw-s1p" customClass="PFImageView">
                                 <rect key="frame" x="10" y="174" width="60" height="60"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -587,7 +600,11 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="hhU-II-yyS">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="xmark" catalog="system" id="gkK-rF-B6c"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="xmark" catalog="system" id="gkK-rF-B6c">
+                            <connections>
+                                <action selector="tappedCancel:" destination="RMa-Fv-D5N" id="RfC-Pm-MFc"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Share" id="u8h-hK-nwR">
                             <connections>
                                 <action selector="tappedShare:" destination="RMa-Fv-D5N" id="vru-lT-Y0A"/>
@@ -619,6 +636,7 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JwJ-3X-fj0" customClass="PFImageView">
                                 <rect key="frame" x="15" y="59" width="80" height="80"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="1ba-J1-Pb1"/>
                                     <constraint firstAttribute="height" constant="80" id="85g-Gl-Jbt"/>
@@ -736,6 +754,7 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="awg-Wn-Kte" firstAttribute="leading" secondItem="JwJ-3X-fj0" secondAttribute="leading" id="1xD-am-zC6"/>
                             <constraint firstItem="S1g-so-p1N" firstAttribute="centerX" secondItem="UfG-N4-Y7P" secondAttribute="centerX" multiplier="5:3" id="4r8-ta-OBO"/>
@@ -801,8 +820,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1d3-YK-5FM" customClass="PFImageView">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1d3-YK-5FM" customClass="PFImageView">
                                 <rect key="frame" x="20" y="64" width="100" height="100"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Nhg-08-KfT"/>
                                     <constraint firstAttribute="width" constant="100" id="r6N-KH-F0f"/>
@@ -940,7 +960,7 @@
                                     <constraint firstAttribute="height" constant="35" id="qnK-mw-YY4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhl-cl-1GT">
                                 <rect key="frame" x="160.5" y="349" width="54" height="30"/>
@@ -990,6 +1010,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="827-mW-tfu" firstAttribute="centerX" secondItem="FTP-KA-Ett" secondAttribute="centerX" multiplier="4:5" id="2Tn-H7-evC"/>
                             <constraint firstItem="rhl-cl-1GT" firstAttribute="centerX" secondItem="FTP-KA-Ett" secondAttribute="centerX" id="4oT-fU-hOg"/>
@@ -1015,6 +1036,9 @@
                             <constraint firstItem="4fL-Wc-rda" firstAttribute="centerX" secondItem="FTP-KA-Ett" secondAttribute="centerX" id="yMH-mg-vNo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nx1-oA-Huv"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="cp0-cK-gtI" appends="YES" id="4wp-bT-oTt"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="emailField" destination="4fL-Wc-rda" id="bTg-M0-zPb"/>
@@ -1024,6 +1048,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJQ-qw-oMg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="cp0-cK-gtI">
+                    <connections>
+                        <action selector="dismissOnTap:" destination="xht-ej-FmZ" id="Y0R-lU-x9H"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="138" y="860"/>
         </scene>
@@ -1106,7 +1135,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6oZ-vR-jHO"/>
+        <segue reference="Ehd-aU-eXO"/>
         <segue reference="v75-8R-lQa"/>
     </inferredMetricsTieBreakers>
     <resources>

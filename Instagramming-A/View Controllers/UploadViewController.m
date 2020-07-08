@@ -7,12 +7,14 @@
 //
 
 #import "UploadViewController.h"
+#import <Parse/Parse.h>
 #import "Post.h"
+@import Parse;
 
 @interface UploadViewController () <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *postImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UITextView *textField;
 
 @end
@@ -26,6 +28,12 @@
     self.textField.text = @"Caption...";
     self.textField.textColor = UIColor.lightGrayColor;
     // Do any additional setup after loading the view
+    self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height/2;
+    PFUser *user = [PFUser currentUser];
+    self.profileImageView.file = user[@"image"];
+    [self.profileImageView loadInBackground];
+    self.postImageView.image = nil;
+    
     UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnPhoto:)];
     [self.postImageView addGestureRecognizer:profileTapGestureRecognizer];
     [self.postImageView setUserInteractionEnabled:YES];
@@ -38,7 +46,7 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
 
     // Do something with the images (based on your use case)
-    self.postImageView.image = editedImage;
+    self.postImageView.image = [self resizeImage:editedImage withSize:CGSizeMake(150, 150)];
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -121,6 +129,14 @@
     [self presentViewController:alert animated:YES completion:^{}];
 }
 
+- (IBAction)tappedCancel:(id)sender {
+    self.postImageView.image = nil;
+    self.textField.text = @"Caption...";
+    self.textField.textColor = UIColor.lightGrayColor;
+    [self.view endEditing:YES];
+    self.tabBarController.selectedIndex = 0;
+}
+
 - (IBAction)tappedShare:(id)sender {
     if (self.textField.textColor == UIColor.lightGrayColor) {
         self.textField.text = @"";
@@ -131,8 +147,7 @@
                 NSLog(@"Error uploading post: %@", error.localizedDescription);
             } else {
                 NSLog(@"Upload Success!");
-                [self.view endEditing:YES];
-//                [self dismissViewControllerAnimated:true completion:nil];
+                [self tappedCancel:sender];
             }
             }];
 }
