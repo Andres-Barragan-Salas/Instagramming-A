@@ -1,8 +1,8 @@
 //
-//  PostViewController.h
+//  CommentViewController.h
 //  Instagramming-A
 //
-//  Created by Andres Barragan on 06/07/20.
+//  Created by Andres Barragan on 07/07/20.
 //  Copyright © 2020 Andres Barragan. All rights reserved.
 //
 
@@ -11,10 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PostViewController : UIViewController
+@interface CommentViewController : UIViewController
 
 @property (strong, nonatomic) Post *post;
-@property (nonatomic) BOOL toComment;
 
 @end
 

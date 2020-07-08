@@ -74,13 +74,15 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqual:@"PostCellSegue"]) {
-        PostTableCell *tappedCell = sender;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-        Post *post = self.posts[indexPath.row];
-        
-        PostViewController *singlePostViewController = [segue destinationViewController];
-        singlePostViewController.post = post;
+    PostTableCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+    Post *post = self.posts[indexPath.row];
+    
+    PostViewController *singlePostViewController = [segue destinationViewController];
+    singlePostViewController.post = post;
+    
+    if ([segue.identifier isEqual:@"CommentButtonSegue"]) {
+        singlePostViewController.toComment = YES; 
     }
 }
 

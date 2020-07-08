@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Comment.h"
 #import "Post.h"
 @import Parse;
 
@@ -17,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet PFImageView *userImageView;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+
+- (void)updateWithComment:(Comment *)comment;
 
 @end
 

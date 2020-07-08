@@ -175,6 +175,9 @@
                                                         <constraint firstAttribute="width" constant="30" id="gyu-pR-Njy"/>
                                                     </constraints>
                                                     <state key="normal" image="message" catalog="system"/>
+                                                    <connections>
+                                                        <segue destination="mpi-pM-yxM" kind="show" identifier="CommentButtonSegue" id="r2U-Oc-0Sd"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBu-mO-3iq">
                                                     <rect key="frame" x="10" y="381.5" width="11" height="20"/>
@@ -355,6 +358,9 @@
                                                         <constraint firstAttribute="height" constant="30" id="dW9-N0-Yr1"/>
                                                     </constraints>
                                                     <state key="normal" image="message" catalog="system"/>
+                                                    <connections>
+                                                        <segue destination="8pD-Oi-cPM" kind="presentation" identifier="CommentSegue" id="mcY-we-ucT"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ii0-FG-OGg">
                                                     <rect key="frame" x="10" y="381.5" width="11" height="20"/>
@@ -521,6 +527,61 @@
             </objects>
             <point key="canvasLocation" x="3957.5999999999999" y="-317.09145427286359"/>
         </scene>
+        <!--Comment View Controller-->
+        <scene sceneID="AfY-bj-cbs">
+            <objects>
+                <viewController id="wUz-CF-nVB" customClass="CommentViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="auF-Ot-AxB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yBf-jQ-cqo" customClass="PFImageView">
+                                <rect key="frame" x="10" y="66" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="6ql-ej-2sV"/>
+                                    <constraint firstAttribute="width" constant="60" id="dis-5j-8ev"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0f0-fj-qH0">
+                                <rect key="frame" x="90" y="79" width="265" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="iDv-3i-LWI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="POp-pG-Um4" firstAttribute="trailing" secondItem="0f0-fj-qH0" secondAttribute="trailing" constant="20" id="GOa-Ar-VFV"/>
+                            <constraint firstItem="yBf-jQ-cqo" firstAttribute="leading" secondItem="POp-pG-Um4" secondAttribute="leading" constant="10" id="NFI-EQ-Vl2"/>
+                            <constraint firstItem="0f0-fj-qH0" firstAttribute="centerY" secondItem="yBf-jQ-cqo" secondAttribute="centerY" id="WYb-Ff-kPW"/>
+                            <constraint firstItem="0f0-fj-qH0" firstAttribute="leading" secondItem="yBf-jQ-cqo" secondAttribute="trailing" constant="20" id="nq9-fu-ZVg"/>
+                            <constraint firstItem="yBf-jQ-cqo" firstAttribute="top" secondItem="POp-pG-Um4" secondAttribute="top" constant="10" id="zHc-et-1Oq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="POp-pG-Um4"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="IgO-ep-Xgw">
+                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="IZw-i1-cbT">
+                            <connections>
+                                <action selector="closeAction:" destination="wUz-CF-nVB" id="ZiY-xe-BPY"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Comment" id="R9P-4z-le5">
+                            <connections>
+                                <action selector="commentAction:" destination="wUz-CF-nVB" id="dym-W1-WtF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="commentField" destination="0f0-fj-qH0" id="BWx-jM-sAr"/>
+                        <outlet property="profileImageView" destination="yBf-jQ-cqo" id="SWz-Re-ZW2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qGf-kW-GlV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5748" y="-317.09145427286359"/>
+        </scene>
         <!--Upload View Controller-->
         <scene sceneID="KA6-gN-W4Y">
             <objects>
@@ -544,6 +605,14 @@
                                     <constraint firstAttribute="height" constant="30" id="w5t-nA-dWT"/>
                                 </constraints>
                                 <state key="normal" title="Take a photo"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="tappedTakeAPhoto:" destination="RMa-Fv-D5N" eventType="touchUpInside" id="vRl-GW-hNj"/>
                                 </connections>
@@ -554,6 +623,14 @@
                                     <constraint firstAttribute="height" constant="30" id="F4M-fc-iod"/>
                                 </constraints>
                                 <state key="normal" title="Upload from gallery"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="tappedUploadFromGallery:" destination="RMa-Fv-D5N" eventType="touchUpInside" id="ATn-RQ-Xof"/>
                                 </connections>
@@ -717,6 +794,14 @@
                                     <constraint firstAttribute="height" constant="30" id="4ca-O0-l58"/>
                                 </constraints>
                                 <state key="normal" title="Edit Profile"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="cMa-Pi-akT" kind="show" id="v75-8R-lQa"/>
                                 </connections>
@@ -834,6 +919,14 @@
                                     <constraint firstAttribute="height" constant="30" id="0z0-xa-HII"/>
                                 </constraints>
                                 <state key="normal" title="Upload from gallery"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="tappedUploadFromGallery:" destination="cMa-Pi-akT" eventType="touchUpInside" id="R0m-UP-RWu"/>
                                 </connections>
@@ -844,6 +937,14 @@
                                     <constraint firstAttribute="height" constant="30" id="Psq-HA-Sfq"/>
                                 </constraints>
                                 <state key="normal" title="Take a photo"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="tappedTakeAPhoto:" destination="cMa-Pi-akT" eventType="touchUpInside" id="Js5-NS-Ycq"/>
                                 </connections>
@@ -1133,10 +1234,29 @@
             </objects>
             <point key="canvasLocation" x="2106" y="471"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="W8E-v5-Sxc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8pD-Oi-cPM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vMj-0r-7YK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wUz-CF-nVB" kind="relationship" relationship="rootViewController" id="KsQ-Ka-r1w"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wsi-JY-Ax0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4808.8000000000002" y="-317.09145427286359"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Ehd-aU-eXO"/>
         <segue reference="v75-8R-lQa"/>
+        <segue reference="r2U-Oc-0Sd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="feed_tab" width="25" height="25"/>

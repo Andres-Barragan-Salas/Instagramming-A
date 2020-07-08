@@ -22,4 +22,13 @@
     // Configure the view for the selected state
 }
 
+- (void)updateWithComment:(Comment *)comment {
+    self.commentLabel.text = comment.caption;
+    
+    PFUser *user = comment.author;
+    self.usernameLabel.text = user.username;
+    self.userImageView.file = user[@"image"];
+    [self.userImageView loadInBackground];
+}
+
 @end
