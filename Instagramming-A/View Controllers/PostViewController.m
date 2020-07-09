@@ -100,6 +100,7 @@
     if ([segue.identifier isEqual:@"profileSegue"]) {
         UserViewController *userViewController = [segue destinationViewController];
         userViewController.user = sender;
+        userViewController.externalUser = YES;
     }
 }
 

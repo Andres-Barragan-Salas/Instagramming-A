@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UserViewController : UIViewController
 
 @property (strong, nonatomic) PFUser *user;
+@property (nonatomic) BOOL externalUser;
 
 @end
 

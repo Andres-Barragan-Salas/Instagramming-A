@@ -32,15 +32,15 @@
 @implementation UserViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-    if (!self.user){
-        self.user = [PFUser currentUser];
-    }
-    else {
+    if (self.externalUser){
         [self.profileButton setTitle:@"Follow" forState:UIControlStateNormal];
         self.profileButton.enabled = NO;
         self.settingsButton.tintColor = [UIColor clearColor];
         self.settingsButton.enabled = NO;
         self.navigationItem.title = self.user.username;
+    }
+    else {
+        self.user = [PFUser currentUser];
     }
     [self setUserInfo];
     [self fetchPosts];
@@ -115,6 +115,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([sender isKindOfClass:[PostCollectionCell class]]) {
         PostCollectionCell *tappedCell = sender;
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            tappedCell.postImageView.alpha = 0.5;
+            tappedCell.postImageView.alpha = 1.0;
+        }];
+        
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
         Post *post = self.posts[indexPath.row];
         

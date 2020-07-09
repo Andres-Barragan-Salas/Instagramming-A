@@ -17,6 +17,7 @@
     // Initialization code
     self.userImageView.layer.cornerRadius = self.userImageView.frame.size.height/2;
     self.likeButton.selected = NO;
+    self.likeButton.tintColor = UIColor.blackColor;
     
     UITapGestureRecognizer *userTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapUserProfile:)];
     [self.userImageView addGestureRecognizer:userTapGestureRecognizer];
@@ -24,9 +25,7 @@
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    
 }
 
 - (void)updateWithPost:(Post *)post {
@@ -56,9 +55,11 @@
       if (!error) {
           if (objects.count != 0) {
               self.likeButton.selected = YES;
+              self.likeButton.tintColor = UIColor.redColor;
           }
           else {
               self.likeButton.selected = NO;
+              self.likeButton.tintColor = UIColor.blackColor;
           }
       } else {
         NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -70,6 +71,7 @@
     self.likeButton.enabled = NO;
     if (!self.likeButton.selected) {
         self.likeButton.selected = YES;
+        self.likeButton.tintColor = UIColor.redColor;
         [Like likePost:self.post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
                 self.likeButton.enabled = YES;
@@ -79,6 +81,7 @@
     }
     else {
         self.likeButton.selected = NO;
+        self.likeButton.tintColor = UIColor.blackColor;
         [Like unlikePost:self.post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
                 self.likeButton.enabled = YES;

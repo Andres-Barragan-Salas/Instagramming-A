@@ -6,6 +6,7 @@
 //  Copyright © 2020 Andres Barragan. All rights reserved.
 //
 
+#import "NSDate+DateTools.h"
 #import "CommentCell.h"
 
 @implementation CommentCell
@@ -21,15 +22,14 @@
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    
 }
 
 - (void)updateWithComment:(Comment *)comment {
     self.comment = comment;
     
     self.commentLabel.text = comment.caption;
+    self.dateLabel.text = comment.createdAt.timeAgoSinceNow;
     
     PFUser *user = comment.author;
     self.usernameLabel.text = user.username;
