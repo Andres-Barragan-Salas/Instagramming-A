@@ -8,11 +8,12 @@
 
 #import "PostViewController.h"
 #import "HomeViewController.h"
+#import "UserViewController.h"
 #import "PostTableCell.h"
 #import <Parse/Parse.h>
 #import "Post.h"
 
-@interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface HomeViewController () <UITableViewDataSource, UITableViewDelegate, PostCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *posts;
@@ -59,6 +60,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PostTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostTableCell"];
+    cell.delegate = self;
     
     Post *post = self.posts[indexPath.row];
     [cell updateWithPost:post];
@@ -70,21 +72,29 @@
     self.tabBarController.selectedIndex = 1;
 }
 
+- (void)postCell:(nonnull PostTableCell *)postCell didTap:(nonnull PFUser *)user {
+    [self performSegueWithIdentifier:@"profileSegue" sender:user];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    PostTableCell *tappedCell = sender;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-    Post *post = self.posts[indexPath.row];
-    
-    PostViewController *singlePostViewController = [segue destinationViewController];
-    singlePostViewController.post = post;
-    
-    if ([segue.identifier isEqual:@"CommentButtonSegue"]) {
-        singlePostViewController.toComment = YES; 
+    if (![segue.identifier isEqual:@"profileSegue"]) {
+        PostTableCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        Post *post = self.posts[indexPath.row];
+        
+        PostViewController *singlePostViewController = [segue destinationViewController];
+        singlePostViewController.post = post;
+        if ([segue.identifier isEqual:@"CommentButtonSegue"]) {
+            singlePostViewController.toComment = YES;
+        }
+    }
+    if ([segue.identifier isEqual:@"profileSegue"]) {
+        UserViewController *userViewController = [segue destinationViewController];
+        userViewController.user = sender;
     }
 }
-
 
 @end

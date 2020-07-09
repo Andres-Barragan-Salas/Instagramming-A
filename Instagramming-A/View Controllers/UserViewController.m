@@ -6,13 +6,10 @@
 //  Copyright © 2020 Andres Barragan. All rights reserved.
 //
 
-#import "LoginViewController.h"
 #import "UserViewController.h"
 #import "PostCollectionCell.h"
 #import "PostCollectionCell.h"
 #import "PostViewController.h"
-#import "Parse/Parse.h"
-#import "SceneDelegate.h"
 #import "Post.h"
 @import Parse;
 
@@ -25,15 +22,26 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIButton *profileButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
 @property (strong, nonatomic) NSArray *posts;
-@property (strong, nonatomic) PFUser *user;
 
 @end
 
 @implementation UserViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.user = [PFUser currentUser];
+    if (!self.user){
+        self.user = [PFUser currentUser];
+    }
+    else {
+        [self.profileButton setTitle:@"Follow" forState:UIControlStateNormal];
+        self.profileButton.enabled = NO;
+        self.settingsButton.tintColor = [UIColor clearColor];
+        self.settingsButton.enabled = NO;
+        self.navigationItem.title = self.user.username;
+    }
     [self setUserInfo];
     [self fetchPosts];
 }
@@ -100,19 +108,6 @@
     
     return cell;
 }
-
-- (IBAction)tappedLogout:(id)sender {
-    SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    sceneDelegate.window.rootViewController = loginViewController;
-    
-    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        // Log out completion block
-    }];
-}
-
 
 #pragma mark - Navigation
 

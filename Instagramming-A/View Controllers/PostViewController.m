@@ -7,12 +7,13 @@
 //
 
 #import "CommentViewController.h"
+#import "UserViewController.h"
 #import "PostViewController.h"
 #import "PostTableCell.h"
 #import "CommentCell.h"
 #import "Comment.h"
 
-@interface PostViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface PostViewController () <UITableViewDataSource, UITableViewDelegate, PostCellDelegate, CommentCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *comments;
@@ -62,12 +63,14 @@
     
     if (indexPath.row == 0) {
         PostTableCell *postCell = [tableView dequeueReusableCellWithIdentifier:@"PostTableCell"];
+        postCell.delegate = self;
         Post *post = self.post;
         [postCell updateWithPost:post];
         return postCell;
     }
     else {
         CommentCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
+        commentCell.delegate = self;
         Comment *comment = self.comments[indexPath.row - 1];
         [commentCell updateWithComment:comment];
         return commentCell;
@@ -76,6 +79,13 @@
     return cell;
 }
 
+- (void)postCell:(nonnull PostTableCell *)postCell didTap:(nonnull PFUser *)user {
+    [self performSegueWithIdentifier:@"profileSegue" sender:user];
+}
+
+- (void)commentCell:(nonnull PostTableCell *)postCell didTap:(nonnull PFUser *)user {
+    [self performSegueWithIdentifier:@"profileSegue" sender:user];
+}
 
 #pragma mark - Navigation
 
@@ -86,6 +96,10 @@
         UINavigationController *navigationController = [segue destinationViewController];
         CommentViewController *commentViewController = (CommentViewController *)navigationController.topViewController;
         commentViewController.post = self.post;
+    }
+    if ([segue.identifier isEqual:@"profileSegue"]) {
+        UserViewController *userViewController = [segue destinationViewController];
+        userViewController.user = sender;
     }
 }
 

@@ -7,6 +7,8 @@
 //
 
 #import "SettingsViewController.h"
+#import "LoginViewController.h"
+#import "SceneDelegate.h"
 #import <Parse/Parse.h>
 @import Parse;
 
@@ -126,6 +128,18 @@
     [alert addAction:takePhotoAction];
 
     [self presentViewController:alert animated:YES completion:^{}];
+}
+
+- (IBAction)tappedLogout:(id)sender {
+    SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    sceneDelegate.window.rootViewController = loginViewController;
+    
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        // Log out completion block
+    }];
 }
 
 /*

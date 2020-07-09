@@ -8,6 +8,7 @@
 
 #import "PostTableCell.h"
 #import "NSDate+DateTools.h"
+#import "Like.h"
 
 @implementation PostTableCell
 
@@ -15,6 +16,11 @@
     [super awakeFromNib];
     // Initialization code
     self.userImageView.layer.cornerRadius = self.userImageView.frame.size.height/2;
+    self.likeButton.selected = NO;
+    
+    UITapGestureRecognizer *userTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapUserProfile:)];
+    [self.userImageView addGestureRecognizer:userTapGestureRecognizer];
+    [self.userImageView setUserInteractionEnabled:YES];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -38,6 +44,56 @@
     self.authorLabel.text = user.username;
     self.userImageView.file = user[@"image"];
     [self.userImageView loadInBackground];
+    
+    [self updateLikeStatus];
+}
+
+- (void)updateLikeStatus {
+    PFQuery *query = [PFQuery queryWithClassName:@"Like"];
+    [query whereKey:@"post" equalTo:self.post];
+    [query whereKey:@"author" equalTo:[PFUser currentUser]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+      if (!error) {
+          if (objects.count != 0) {
+              self.likeButton.selected = YES;
+          }
+          else {
+              self.likeButton.selected = NO;
+          }
+      } else {
+        NSLog(@"Error: %@ %@", error, [error userInfo]);
+      }
+    }];
+}
+
+- (IBAction)tappedLikeButton:(id)sender {
+    self.likeButton.enabled = NO;
+    if (!self.likeButton.selected) {
+        self.likeButton.selected = YES;
+        [Like likePost:self.post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded) {
+                self.likeButton.enabled = YES;
+                self.likesCountLabel.text = [self.post.likeCount stringValue];
+            }
+        }];
+    }
+    else {
+        self.likeButton.selected = NO;
+        [Like unlikePost:self.post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded) {
+                self.likeButton.enabled = YES;
+                self.likesCountLabel.text = [self.post.likeCount stringValue];
+            }
+        }];
+    }
+}
+
+- (void) didTapUserProfile:(UIGestureRecognizer *)sender {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.userImageView.alpha = 0.5;
+        self.userImageView.alpha = 1;
+    }];
+    [self.delegate postCell:self didTap:self.post.author];
 }
 
 @end

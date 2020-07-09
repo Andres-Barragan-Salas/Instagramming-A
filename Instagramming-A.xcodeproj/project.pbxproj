@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BB9D0BC24B6808F00F4ECB2 /* Like.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB9D0BB24B6808E00F4ECB2 /* Like.m */; };
 		2BE7D21B24B3CD9C0009F007 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7D21A24B3CD9C0009F007 /* AppDelegate.m */; };
 		2BE7D21E24B3CD9C0009F007 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7D21D24B3CD9C0009F007 /* SceneDelegate.m */; };
 		2BE7D22424B3CD9C0009F007 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BE7D22224B3CD9C0009F007 /* Main.storyboard */; };
@@ -54,6 +55,8 @@
 /* Begin PBXFileReference section */
 		0D9EE95A74A2D7B97CE555F0 /* Pods-Instagramming-A-Instagramming-AUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagramming-A-Instagramming-AUITests.debug.xcconfig"; path = "Target Support Files/Pods-Instagramming-A-Instagramming-AUITests/Pods-Instagramming-A-Instagramming-AUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		22D7D358CE86ADAE1ED1E1BC /* Pods-Instagramming-ATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagramming-ATests.release.xcconfig"; path = "Target Support Files/Pods-Instagramming-ATests/Pods-Instagramming-ATests.release.xcconfig"; sourceTree = "<group>"; };
+		2BB9D0BA24B6808E00F4ECB2 /* Like.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Like.h; sourceTree = "<group>"; };
+		2BB9D0BB24B6808E00F4ECB2 /* Like.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Like.m; sourceTree = "<group>"; };
 		2BE7D21624B3CD9C0009F007 /* Instagramming-A.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Instagramming-A.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE7D21924B3CD9C0009F007 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2BE7D21A24B3CD9C0009F007 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -247,6 +250,8 @@
 				2BE7D27E24B4F5F30009F007 /* Post.m */,
 				2BE7D28324B566CA0009F007 /* Comment.h */,
 				2BE7D28424B566CA0009F007 /* Comment.m */,
+				2BB9D0BA24B6808E00F4ECB2 /* Like.h */,
+				2BB9D0BB24B6808E00F4ECB2 /* Like.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -528,6 +533,7 @@
 				2BE7D26024B3DF4E0009F007 /* Util.m in Sources */,
 				2BE7D28224B522B20009F007 /* SettingsViewController.m in Sources */,
 				2BE7D27624B422F80009F007 /* HomeViewController.m in Sources */,
+				2BB9D0BC24B6808F00F4ECB2 /* Like.m in Sources */,
 				2BE7D27F24B4F5F30009F007 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
