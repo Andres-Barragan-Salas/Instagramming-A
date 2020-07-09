@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *profileButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSArray *posts;
 
 @end
@@ -57,6 +58,10 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     self.userImageView.layer.cornerRadius = self.userImageView.frame.size.height/2;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
+    [self.collectionView insertSubview:self.refreshControl atIndex:0];
     
     //Layout adjustments
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
@@ -95,6 +100,7 @@
         } else {
             self.posts = posts;
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.refreshControl endRefreshing];
             [self.collectionView reloadData];
         }
     }];

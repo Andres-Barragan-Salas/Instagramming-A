@@ -23,6 +23,13 @@
 
 @implementation UploadViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    PFUser *user = [PFUser currentUser];
+    self.profileImageView.image = nil;
+    self.profileImageView.file = user[@"image"];
+    [self.profileImageView loadInBackground];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -31,10 +38,6 @@
     self.textField.textColor = UIColor.lightGrayColor;
     // Do any additional setup after loading the view
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height/2;
-    PFUser *user = [PFUser currentUser];
-    self.profileImageView.image = nil;
-    self.profileImageView.file = user[@"image"];
-    [self.profileImageView loadInBackground];
     self.postImageView.image = nil;
     
     UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnPhoto:)];

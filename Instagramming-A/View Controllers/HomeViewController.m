@@ -95,6 +95,10 @@
     [self performSegueWithIdentifier:@"profileSegue" sender:user];
 }
 
+- (void)postCell:(nonnull PostTableCell *)postCell didCommentOn:(nonnull Post *)post {
+    [self performSegueWithIdentifier:@"CommentButtonSegue" sender:post];
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if(!self.isMoreDataLoading){
         // Calculate the position of one screen length before the bottom of the results
@@ -127,9 +131,11 @@
         
         PostViewController *singlePostViewController = [segue destinationViewController];
         singlePostViewController.post = post;
-        if ([segue.identifier isEqual:@"CommentButtonSegue"]) {
-            singlePostViewController.toComment = YES;
-        }
+    }
+    if ([segue.identifier isEqual:@"CommentButtonSegue"]) {
+        PostViewController *singlePostViewController = [segue destinationViewController];
+        singlePostViewController.post = sender;
+        singlePostViewController.toComment = YES;
     }
     if ([segue.identifier isEqual:@"profileSegue"]) {
         UserViewController *userViewController = [segue destinationViewController];

@@ -30,12 +30,11 @@
 }
 
 - (IBAction)tappedLogin:(id)sender {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
     
     if(!([self.usernameField.text isEqual:@""] || [self.passwordField.text isEqual:@""])) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
             if (error != nil) {
                 NSLog(@"User log in failed: %@", error.localizedDescription);
@@ -51,12 +50,11 @@
                 
                 [self presentViewController:alert animated:YES completion:^{}];
             } else {
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 NSLog(@"User logged in successfully");
-                
                 // display view controller that needs to shown after successful login
                 [self performSegueWithIdentifier:@"loginSegue" sender:nil];
             }
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
     }
     else {

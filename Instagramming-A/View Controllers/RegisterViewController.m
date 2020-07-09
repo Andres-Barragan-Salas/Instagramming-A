@@ -40,6 +40,7 @@
         
         // call sign up function on the object
         if(!([self.usernameField.text isEqual:@""] || [self.passwordField.text isEqual:@""] || [self.emailField.text isEqual:@""])) {
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
                 if (error != nil) {
                     NSLog(@"Error: %@", error.localizedDescription);
@@ -55,11 +56,11 @@
                     
                     [self presentViewController:alert animated:YES completion:^{}];
                 } else {
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
                     NSLog(@"User registered successfully");
                     
                     [self performSegueWithIdentifier:@"loginSegue" sender:nil];
                 }
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
             }];
         }
         else {
