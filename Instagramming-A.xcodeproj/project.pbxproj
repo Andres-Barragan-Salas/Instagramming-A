@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2BB9D0BC24B6808F00F4ECB2 /* Like.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB9D0BB24B6808E00F4ECB2 /* Like.m */; };
+		2BB9D0BF24B6BD7400F4ECB2 /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB9D0BE24B6BD7400F4ECB2 /* InfiniteScrollActivityView.m */; };
 		2BE7D21B24B3CD9C0009F007 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7D21A24B3CD9C0009F007 /* AppDelegate.m */; };
 		2BE7D21E24B3CD9C0009F007 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7D21D24B3CD9C0009F007 /* SceneDelegate.m */; };
 		2BE7D22424B3CD9C0009F007 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BE7D22224B3CD9C0009F007 /* Main.storyboard */; };
@@ -57,6 +58,8 @@
 		22D7D358CE86ADAE1ED1E1BC /* Pods-Instagramming-ATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagramming-ATests.release.xcconfig"; path = "Target Support Files/Pods-Instagramming-ATests/Pods-Instagramming-ATests.release.xcconfig"; sourceTree = "<group>"; };
 		2BB9D0BA24B6808E00F4ECB2 /* Like.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Like.h; sourceTree = "<group>"; };
 		2BB9D0BB24B6808E00F4ECB2 /* Like.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Like.m; sourceTree = "<group>"; };
+		2BB9D0BD24B6BD7400F4ECB2 /* InfiniteScrollActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollActivityView.h; sourceTree = "<group>"; };
+		2BB9D0BE24B6BD7400F4ECB2 /* InfiniteScrollActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollActivityView.m; sourceTree = "<group>"; };
 		2BE7D21624B3CD9C0009F007 /* Instagramming-A.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Instagramming-A.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE7D21924B3CD9C0009F007 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2BE7D21A24B3CD9C0009F007 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -230,6 +233,8 @@
 				2BE7D26C24B402F70009F007 /* PostCollectionCell.m */,
 				2BE7D26E24B4220A0009F007 /* CommentCell.h */,
 				2BE7D26F24B4220A0009F007 /* CommentCell.m */,
+				2BB9D0BD24B6BD7400F4ECB2 /* InfiniteScrollActivityView.h */,
+				2BB9D0BE24B6BD7400F4ECB2 /* InfiniteScrollActivityView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -528,6 +533,7 @@
 				2BE7D21B24B3CD9C0009F007 /* AppDelegate.m in Sources */,
 				2BE7D22C24B3CD9E0009F007 /* main.m in Sources */,
 				2BE7D28824B56D5E0009F007 /* CommentViewController.m in Sources */,
+				2BB9D0BF24B6BD7400F4ECB2 /* InfiniteScrollActivityView.m in Sources */,
 				2BE7D27324B422B80009F007 /* PostViewController.m in Sources */,
 				2BE7D21E24B3CD9C0009F007 /* SceneDelegate.m in Sources */,
 				2BE7D26024B3DF4E0009F007 /* Util.m in Sources */,

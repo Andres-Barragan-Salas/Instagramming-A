@@ -6,6 +6,7 @@
 //  Copyright © 2020 Andres Barragan. All rights reserved.
 //
 
+#import "InfiniteScrollActivityView.h"
 #import "PostViewController.h"
 #import "HomeViewController.h"
 #import "UserViewController.h"
@@ -13,11 +14,13 @@
 #import <Parse/Parse.h>
 #import "Post.h"
 
-@interface HomeViewController () <UITableViewDataSource, UITableViewDelegate, PostCellDelegate>
+@interface HomeViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, PostCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *posts;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic) BOOL isMoreDataLoading;
+@property (strong, nonatomic) InfiniteScrollActivityView* loadingMoreView;
 
 @end
 
@@ -34,6 +37,16 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
+    // Set up Infinite Scroll loading indicator
+    CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+    self.loadingMoreView = [[InfiniteScrollActivityView alloc] initWithFrame:frame];
+    self.loadingMoreView.hidden = true;
+    [self.tableView addSubview:self.loadingMoreView];
+    
+    UIEdgeInsets insets = self.tableView.contentInset;
+    insets.bottom += InfiniteScrollActivityView.defaultHeight;
+    self.tableView.contentInset = insets;
 }
 
 - (void)fetchPosts {
@@ -50,6 +63,8 @@
            self.posts = posts;
            [self.tableView reloadData];
            [self.refreshControl endRefreshing];
+           self.isMoreDataLoading = false;
+           [self.loadingMoreView stopAnimating];
        }
    }];
 }
@@ -74,6 +89,27 @@
 
 - (void)postCell:(nonnull PostTableCell *)postCell didTap:(nonnull PFUser *)user {
     [self performSegueWithIdentifier:@"profileSegue" sender:user];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if(!self.isMoreDataLoading){
+        // Calculate the position of one screen length before the bottom of the results
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.isMoreDataLoading = true;
+            
+            // Update position of loadingMoreView, and start loading indicator
+            CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+            self.loadingMoreView.frame = frame;
+            [self.loadingMoreView startAnimating];
+            
+            // Code to load more results
+            [self fetchPosts];
+        }
+    }
 }
 
 #pragma mark - Navigation
