@@ -40,7 +40,25 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+//    [self performSelector:@selector(alertChanges) withObject:nil afterDelay:0.1];
     [self updateUserInfo];
+}
+
+-(void)alertChanges {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Save changes?" message:nil preferredStyle:(UIAlertControllerStyleAlert)];
+
+    UIAlertAction *galleryAction = [UIAlertAction actionWithTitle:@"Save Changes"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
+                                                             [self updateUserInfo];
+                                                     }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Dismiss Changes"
+      style:UIAlertActionStyleCancel
+    handler:^(UIAlertAction * _Nonnull action) {}];
+    [alert addAction:galleryAction];
+    [alert addAction:cancelAction];
+
+    [self presentViewController:alert animated:YES completion:^{}];
 }
 
 - (void)updateUserInfo {

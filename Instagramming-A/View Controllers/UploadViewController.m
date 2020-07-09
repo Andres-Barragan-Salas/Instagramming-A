@@ -8,6 +8,7 @@
 
 #import "UploadViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "CameraViewController.h"
 #import <Parse/Parse.h>
 #import "Post.h"
 @import Parse;
@@ -101,7 +102,8 @@
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+//        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self performSegueWithIdentifier:@"CameraSegue" sender:self];
     }
     else {
         NSLog(@"Camera 🚫 available so we will use photo library instead");
@@ -156,7 +158,6 @@
             }];
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -164,6 +165,5 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
 
 @end
