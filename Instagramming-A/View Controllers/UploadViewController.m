@@ -7,6 +7,7 @@
 //
 
 #import "UploadViewController.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 #import <Parse/Parse.h>
 #import "Post.h"
 @import Parse;
@@ -138,6 +139,8 @@
 }
 
 - (IBAction)tappedShare:(id)sender {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     if (self.textField.textColor == UIColor.lightGrayColor) {
         self.textField.text = @"";
     }
@@ -146,6 +149,7 @@
             if (error) {
                 NSLog(@"Error uploading post: %@", error.localizedDescription);
             } else {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 NSLog(@"Upload Success!");
                 [self tappedCancel:sender];
             }

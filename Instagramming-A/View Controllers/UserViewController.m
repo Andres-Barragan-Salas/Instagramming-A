@@ -6,6 +6,8 @@
 //  Copyright © 2020 Andres Barragan. All rights reserved.
 //
 
+
+#import <MBProgressHUD/MBProgressHUD.h>
 #import "UserViewController.h"
 #import "PostCollectionCell.h"
 #import "PostCollectionCell.h"
@@ -24,7 +26,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *profileButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
 @property (strong, nonatomic) NSArray *posts;
 
 @end
@@ -53,6 +54,8 @@
     self.collectionView.delegate = self;
     
     // Do any additional setup after loading the view.
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     self.userImageView.layer.cornerRadius = self.userImageView.frame.size.height/2;
     
     //Layout adjustments
@@ -90,6 +93,7 @@
             NSLog(@"%@", error.localizedDescription);
         } else {
             self.posts = posts;
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self.collectionView reloadData];
         }
     }];

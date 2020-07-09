@@ -6,6 +6,7 @@
 //  Copyright © 2020 Andres Barragan. All rights reserved.
 //
 
+#import <MBProgressHUD/MBProgressHUD.h>
 #import "RegisterViewController.h"
 #import "Parse/Parse.h"
 
@@ -54,6 +55,7 @@
                     
                     [self presentViewController:alert animated:YES completion:^{}];
                 } else {
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
                     NSLog(@"User registered successfully");
                     
                     [self performSegueWithIdentifier:@"loginSegue" sender:nil];

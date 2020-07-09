@@ -6,6 +6,8 @@
 //  Copyright © 2020 Andres Barragan. All rights reserved.
 //
 
+
+#import <MBProgressHUD/MBProgressHUD.h>
 #import "InfiniteScrollActivityView.h"
 #import "PostViewController.h"
 #import "HomeViewController.h"
@@ -32,6 +34,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     // Do any additional setup after loading the view.
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self fetchPosts];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -61,6 +64,7 @@
            NSLog(@"%@", error.localizedDescription);
        } else {
            self.posts = posts;
+           [MBProgressHUD hideHUDForView:self.view animated:YES];
            [self.tableView reloadData];
            [self.refreshControl endRefreshing];
            self.isMoreDataLoading = false;

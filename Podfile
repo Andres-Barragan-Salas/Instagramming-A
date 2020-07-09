@@ -10,6 +10,7 @@ target 'Instagramming-A' do
   pod 'Parse/UI'
   pod 'DateTools'
   pod 'ResponsiveLabel', '~> 1.0.10'
+  pod 'MBProgressHUD'
 
   target 'Instagramming-ATests' do
     inherit! :search_paths

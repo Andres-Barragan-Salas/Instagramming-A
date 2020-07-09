@@ -6,6 +6,7 @@
 //  Copyright © 2020 Andres Barragan. All rights reserved.
 //
 
+#import <MBProgressHUD/MBProgressHUD.h>
 #import "CommentViewController.h"
 #import "Comment.h"
 @import Parse;
@@ -34,10 +35,13 @@
 }
 
 - (IBAction)commentAction:(id)sender {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     [Comment postCommentWithCaption:self.commentField.text onPost:self.post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
     if (error) {
         NSLog(@"Error uploading post: %@", error.localizedDescription);
     } else {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSLog(@"Upload Success!");
         [self closeAction:sender];
     }

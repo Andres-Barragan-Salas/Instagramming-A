@@ -6,6 +6,8 @@
 //  Copyright © 2020 Andres Barragan. All rights reserved.
 //
 
+
+#import <MBProgressHUD/MBProgressHUD.h>
 #import "CommentViewController.h"
 #import "UserViewController.h"
 #import "PostViewController.h"
@@ -17,6 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *comments;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -32,7 +35,12 @@
         [self performSegueWithIdentifier:@"CommentButtonSegue" sender:nil];
     }
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self fetchComments];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchComments) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -53,6 +61,8 @@
             NSLog(@"%@", error.localizedDescription);
         } else {
             self.comments = comments;
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.refreshControl endRefreshing];
             [self.tableView reloadData];
         }
     }];
