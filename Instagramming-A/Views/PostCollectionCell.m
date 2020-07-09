@@ -11,6 +11,7 @@
 @implementation PostCollectionCell
 
 - (void)updateWithPost:(Post *)post {
+    self.postImageView.image = nil;
     self.postImageView.file = post.image;
     [self.postImageView loadInBackground];
 }

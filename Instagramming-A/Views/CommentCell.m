@@ -33,6 +33,7 @@
     
     PFUser *user = comment.author;
     self.usernameLabel.text = user.username;
+    self.userImageView.image = nil;
     self.userImageView.file = user[@"image"];
     [self.userImageView loadInBackground];
 }

@@ -76,6 +76,7 @@
     self.postsCountLabel.text = [NSString stringWithFormat:@"%@", self.user[@"postCount"]];
     self.followersCountLabel.text = @"0";
     self.followingCountLabel.text = @"0";
+    self.userImageView.image = nil;
     self.userImageView.file = self.user[@"image"];
     [self.userImageView loadInBackground];
 }

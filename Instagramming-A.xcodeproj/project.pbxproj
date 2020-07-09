@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B278D9324B793C400B18876 /* BeautifulPeoplePersonalUse-dE0g.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B278D9224B793C400B18876 /* BeautifulPeoplePersonalUse-dE0g.ttf */; };
 		2BB9D0BC24B6808F00F4ECB2 /* Like.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB9D0BB24B6808E00F4ECB2 /* Like.m */; };
 		2BB9D0BF24B6BD7400F4ECB2 /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB9D0BE24B6BD7400F4ECB2 /* InfiniteScrollActivityView.m */; };
 		2BB9D0C524B6D33800F4ECB2 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB9D0C424B6D33800F4ECB2 /* CameraViewController.m */; };
@@ -57,6 +58,7 @@
 /* Begin PBXFileReference section */
 		0D9EE95A74A2D7B97CE555F0 /* Pods-Instagramming-A-Instagramming-AUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagramming-A-Instagramming-AUITests.debug.xcconfig"; path = "Target Support Files/Pods-Instagramming-A-Instagramming-AUITests/Pods-Instagramming-A-Instagramming-AUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		22D7D358CE86ADAE1ED1E1BC /* Pods-Instagramming-ATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagramming-ATests.release.xcconfig"; path = "Target Support Files/Pods-Instagramming-ATests/Pods-Instagramming-ATests.release.xcconfig"; sourceTree = "<group>"; };
+		2B278D9224B793C400B18876 /* BeautifulPeoplePersonalUse-dE0g.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "BeautifulPeoplePersonalUse-dE0g.ttf"; path = "../../../Downloads/beautiful-people-font/BeautifulPeoplePersonalUse-dE0g.ttf"; sourceTree = "<group>"; };
 		2BB9D0BA24B6808E00F4ECB2 /* Like.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Like.h; sourceTree = "<group>"; };
 		2BB9D0BB24B6808E00F4ECB2 /* Like.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Like.m; sourceTree = "<group>"; };
 		2BB9D0BD24B6BD7400F4ECB2 /* InfiniteScrollActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollActivityView.h; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				2BE7D21D24B3CD9C0009F007 /* SceneDelegate.m */,
 				2BE7D22224B3CD9C0009F007 /* Main.storyboard */,
 				2BE7D22524B3CD9E0009F007 /* Assets.xcassets */,
+				2B278D9224B793C400B18876 /* BeautifulPeoplePersonalUse-dE0g.ttf */,
 				2BE7D22724B3CD9E0009F007 /* LaunchScreen.storyboard */,
 				2BE7D22A24B3CD9E0009F007 /* Info.plist */,
 				2BE7D22B24B3CD9E0009F007 /* main.m */,
@@ -400,6 +403,7 @@
 				2BE7D22924B3CD9E0009F007 /* LaunchScreen.storyboard in Resources */,
 				2BE7D22624B3CD9E0009F007 /* Assets.xcassets in Resources */,
 				2BE7D22424B3CD9C0009F007 /* Main.storyboard in Resources */,
+				2B278D9324B793C400B18876 /* BeautifulPeoplePersonalUse-dE0g.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

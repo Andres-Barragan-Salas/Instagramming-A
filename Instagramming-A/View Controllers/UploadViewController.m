@@ -32,6 +32,7 @@
     // Do any additional setup after loading the view
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height/2;
     PFUser *user = [PFUser currentUser];
+    self.profileImageView.image = nil;
     self.profileImageView.file = user[@"image"];
     [self.profileImageView loadInBackground];
     self.postImageView.image = nil;
@@ -102,8 +103,8 @@
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-//        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self performSegueWithIdentifier:@"CameraSegue" sender:self];
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+//        [self performSegueWithIdentifier:@"CameraSegue" sender:self];
     }
     else {
         NSLog(@"Camera 🚫 available so we will use photo library instead");

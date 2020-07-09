@@ -35,12 +35,14 @@
     self.dateLabel.text = post.createdAt.timeAgoSinceNow;
     self.likesCountLabel.text = [post.likeCount stringValue];
     self.comentsCountLabel.text = [NSString stringWithFormat:@"%@ Comments", post.commentCount];
+    self.postImageView.image = nil;
     self.postImageView.file = post.image;
     [self.postImageView loadInBackground];
     
     PFUser *user = post.author;
     self.usernameLabel.text = user.username;
     self.authorLabel.text = user.username;
+    self.userImageView.image = nil;
     self.userImageView.file = user[@"image"];
     [self.userImageView loadInBackground];
     
