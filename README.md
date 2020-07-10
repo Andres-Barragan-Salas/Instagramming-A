@@ -60,7 +60,7 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
 - [Parse](http://parseplatform.org/Parse-SDK-iOS-OSX/api/) - database
 - [DateTools](https://github.com/MatthewYork/DateTools) - date format library
-- [ResponsiveLabel](hhttps://cocoapods.org/pods/ResponsiveLabel) - dynamic text within labels
+- [ResponsiveLabel](https://cocoapods.org/pods/ResponsiveLabel) - dynamic text within labels
 - [MBProgressHUD](https://cocoapods.org/pods/MBProgressHUD) - loading indicator
 
 
